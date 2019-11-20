@@ -1,0 +1,23 @@
+[[package]]
+category = "main"
+description = "Simple library for color and formatting to terminal"
+name = "colored"
+optional = false
+python-versions = "*"
+version = "1.4.0"
+
+[[package]]
+category = "main"
+description = "Module for common login service"
+name = "login"
+optional = false
+python-versions = ">=3"
+version = "0.0.6"
+
+[metadata]
+content-hash = "7dce6ad2d429a6ee1ac5a82ccb9c0391b0a71915ddb3d2643bc486d9960ad69c"
+python-versions = "^3.7"
+
+[metadata.hashes]
+colored = ["ee8f73c40c06d9e5b829a8e284ebfaeac5ebfc7578f2eb4a0e031b40fe799a72"]
+login = ["d3edf1e1a9ac26f43c4db7e2beb7649e411087f3a52f99a937740ba57f3d0e81"]
