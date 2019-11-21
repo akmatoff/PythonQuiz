@@ -1,4 +1,11 @@
 import csv
+from colored import fg, attr
+
+red = fg('red')
+green = fg('green')
+blue = fg('blue')
+yellow = fg('yellow')
+reset = attr('reset')
 
 usernames = []
 logpass = []
@@ -17,10 +24,10 @@ def login_form():
       usernames.append(username)
       if login in usernames:
         if password == row[1]:
-          print("Добро пожаловать в тесты по Python!")
+          print(green + "Добро пожаловать в тесты по Python!" + reset)
           break
         else:
-          print("Неверный пароль! Попробуйте еще раз!")
+          print(red + "Неверный пароль! Попробуйте еще раз!" + reset)
           login_form()
     if not login in usernames:
       print("Пользователь не найден, пройдите регистрацию!")
@@ -34,7 +41,7 @@ def register_form():
   confirm = input("Повторите пароль для подтверждения: ")
   
   if confirm != password:
-    print("Пароли не совпадают! Попробуйте еще раз!")
+    print(red + "Пароли не совпадают! Попробуйте еще раз!" + reset)
     register_form()
   else:
     logpass.append(login)
@@ -43,25 +50,4 @@ def register_form():
       writer = csv.writer(users_csv)
       writer.writerow(logpass)
 
-  print("Регистрация успешно завершена!")
-
-
-        
-
-
-      
-
-
-
-
-
-
-    
-
-      
-    
-
-
-
-
-
+  print(green + "Регистрация успешно завершена!" + reset)
