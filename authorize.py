@@ -13,6 +13,7 @@ logpass = []
 def login_form():
   print("- Авторизация - ".center(70))
 
+  global login
   login = input("Введите логин: ")
   password = input("Введите пароль: ")
 
@@ -32,6 +33,7 @@ def login_form():
     if not login in usernames:
       print("Пользователь не найден, пройдите регистрацию!")
       register_form()
+
 
 def register_form():
   print("- Регистрация - ".center(70))

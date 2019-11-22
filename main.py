@@ -15,7 +15,9 @@ correct_answer_list = []
 question_num = 1
 count_correct_answers = 0
 
+mark = ''
 score = []
+result = []
 
 with open('quiz.csv', newline='') as csv_file:
   csv_reader = csv.reader(csv_file, delimiter=";")
@@ -75,47 +77,56 @@ totalscore = sum(score)
 print("Поздравляю! Вы завершили тест по Python. Количество набранных баллов: " + green + str(totalscore) + reset)
 print("Количество правильных ответов: " + green + str(count_correct_answers) + reset + " из " + green + str(len(question_list) - 1) + reset)
 
+# Marks and score
 if totalscore == 100:
   print("Ваша оценка: A")
+  mark += 'A'
 elif totalscore >= 95:
   print("Ваша оценка: A-")
+  mark += 'A-'
 elif totalscore >= 90:
   print("Ваша оценка: B+")
+  mark += 'B+'
 elif totalscore >= 87:
   print("Ваша оценка: B")
+  mark += 'B'
 elif totalscore >= 85:
   print("Ваша оценка: B-")
+  mark += 'B-'
 elif totalscore >= 80:
   print("Ваша оценка: C+")
+  mark += 'C+'
 elif totalscore >= 77:
   print("Ваша оценка: C")
+  mark += 'C'
 elif totalscore >= 75:
   print("Ваша оценка: C-")
+  mark += 'C-'
 elif totalscore >= 70:
   print("Ваша оценка: D+")
+  mark += 'D+'
 elif totalscore >= 67:
   print("Ваша оценка: D")
+  mark += 'D'
 elif totalscore >= 65:
   print("Ваша оценка: D-")
+  mark += 'D-'
 else:
   print("Ваша оценка: F")
+  mark += 'F'
 
+result.append(authorize.login)
+result.append(str(totalscore))
+result.append(mark)
 
+with open('.//results//' + authorize.login + '.csv', 'a', newline = '') as write_result:
+  writer = csv.writer(write_result)
+  writer.writerow(result)
 
- 
+print("")
+print("Логин \t Количество баллов \t Оценка")
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+with open('.//results//' + authorize.login + '.csv', newline = '') as read_result:
+  reader = csv.reader(read_result, delimiter = ",")
+  for res in reader:
+    print('\t'.join(result))
