@@ -18,6 +18,7 @@ count_correct_answers = 0
 mark = ''
 score = []
 result = []
+high_result = []
 
 with open('quiz.csv', newline='') as csv_file:
   csv_reader = csv.reader(csv_file, delimiter=";")
@@ -118,15 +119,15 @@ else:
 result.append(authorize.login)
 result.append(str(totalscore))
 result.append(mark)
-
-with open('.//results//' + authorize.login + '.csv', 'a', newline = '') as write_result:
+      
+with open('results.csv', 'a', newline = '') as  write_result:
   writer = csv.writer(write_result)
   writer.writerow(result)
 
 print("")
 print("Логин \t Количество баллов \t Оценка")
 
-with open('.//results//' + authorize.login + '.csv', newline = '') as read_result:
+with open('results.csv', newline = '') as read_result:
   reader = csv.reader(read_result, delimiter = ",")
   for res in reader:
-    print('\t'.join(result))
+    print('\t'.join(res))

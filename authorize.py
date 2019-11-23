@@ -9,6 +9,7 @@ reset = attr('reset')
 
 usernames = []
 logpass = []
+passwords = []
 
 def login_form():
   print("- Авторизация - ".center(70))
@@ -23,17 +24,18 @@ def login_form():
     for row in csv_reader:
       username = row[0]
       usernames.append(username)
+      passwords.append(row[1])
       if login in usernames:
         if password == row[1]:
           print(green + "Добро пожаловать в тесты по Python!" + reset)
           break
-        else:
-          print(red + "Неверный пароль! Попробуйте еще раз!" + reset)
-          login_form()
+    if password != row[1]:
+      print(red + "Неверный пароль! Повторите попытку!" + reset)
+      login_form()
+          
     if not login in usernames:
       print("Пользователь не найден, пройдите регистрацию!")
       register_form()
-
 
 def register_form():
   print("- Регистрация - ".center(70))
