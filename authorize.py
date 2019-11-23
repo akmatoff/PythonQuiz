@@ -9,7 +9,6 @@ reset = attr('reset')
 
 usernames = []
 logpass = []
-passwords = []
 
 def login_form():
   print("- Авторизация - ".center(70))
@@ -24,18 +23,19 @@ def login_form():
     for row in csv_reader:
       username = row[0]
       usernames.append(username)
-      passwords.append(row[1])
-      if login in usernames:
-        if password == row[1]:
+  if login in usernames:
+    with open('users.csv', newline = '') as read_csv:
+      reader = csv.reader(read_csv, delimiter = ',')
+      for r in reader:
+        if password == r[1]:
           print(green + "Добро пожаловать в тесты по Python!" + reset)
           break
-    if password != row[1]:
-      print(red + "Неверный пароль! Повторите попытку!" + reset)
-      login_form()
-          
-    if not login in usernames:
-      print("Пользователь не найден, пройдите регистрацию!")
-      register_form()
+      if password != r[1]:
+        print(red + "Неверный пароль! Повторите попытку!" + reset)
+        login_form()
+  else:
+    print(yellow + "Пользователь не найден, пройдите регистрацию." + reset)
+    register_form()
 
 def register_form():
   print("- Регистрация - ".center(70))
@@ -44,14 +44,15 @@ def register_form():
   password = input("Введите пароль: ")
   confirm = input("Повторите пароль для подтверждения: ")
   
-  if confirm != password:
-    print(red + "Пароли не совпадают! Попробуйте еще раз!" + reset)
-    register_form()
-  else:
+  if confirm == password:
     logpass.append(login)
     logpass.append(password)
     with open('users.csv', 'a') as users_csv:
       writer = csv.writer(users_csv)
       writer.writerow(logpass)
-
+  else:
+    print(red + "Пароли не совпадают! Попробуйте еще раз!" + reset)
+    register_form()
+    
   print(green + "Регистрация успешно завершена!" + reset)
+
