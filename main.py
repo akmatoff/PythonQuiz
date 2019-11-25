@@ -18,7 +18,6 @@ count_correct_answers = 0
 mark = ''
 score = []
 result = []
-high_result = []
 
 with open('quiz.csv', newline='') as csv_file:
   csv_reader = csv.reader(csv_file, delimiter=";")
@@ -35,8 +34,15 @@ with open('quiz.csv', newline='') as csv_file:
     answer3_list.append(answer3)
     correct_answer_list.append(correct_answer)
 
-authorize.login_form()
+auth = input("Введите цифру " + yellow + "1 " + reset + "для авторизации, или цифру" + green + " 2 " + reset + "для регистрации: ")
 
+if auth == "1":
+  authorize.login_form()
+elif auth == "2":
+  authorize.register_form()
+while auth != "1" and auth != "2":
+  auth = input("Введите цифру 1 для авторизации, или цифру 2 для регистрации")
+  
 while question_num < len(question_list):
   print(yellow + 'Вопрос №' + str(question_num) + ':' + reset + question_list[question_num])
   print(yellow + 'a) ' + reset + answer1_list[question_num])
@@ -78,7 +84,6 @@ totalscore = sum(score)
 print("Поздравляю! Вы завершили тест по Python. Количество набранных баллов: " + green + str(totalscore) + reset)
 print("Количество правильных ответов: " + green + str(count_correct_answers) + reset + " из " + green + str(len(question_list) - 1) + reset)
 
-# Marks and score
 if totalscore == 100:
   print("Ваша оценка: A")
   mark += 'A'

@@ -27,11 +27,11 @@ def login_form():
     with open('users.csv', newline = '') as read_csv:
       reader = csv.reader(read_csv, delimiter = ',')
       for r in reader:
-        if password == r[1]:
+        if login == r[0] and password == r[1]:
           print(green + "Добро пожаловать в тесты по Python!" + reset)
           break
       if password != r[1]:
-        print(red + "Неверный пароль! Повторите попытку!" + reset)
+        print(red + "Неверный логин или пароль! Повторите попытку!" + reset)
         login_form()
   else:
     print(yellow + "Пользователь не найден, пройдите регистрацию." + reset)
@@ -55,4 +55,4 @@ def register_form():
     register_form()
     
   print(green + "Регистрация успешно завершена!" + reset)
-
+  
