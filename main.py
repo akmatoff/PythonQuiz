@@ -34,18 +34,7 @@ with open('quiz.csv', newline='') as csv_file:
     answer3_list.append(answer3)
     correct_answer_list.append(correct_answer)
 
-auth = input("Введите цифру " + yellow + "1 " + reset + "для авторизации, или цифру" + green + " 2 " + reset + "для регистрации: ")
-
-if auth == "1":
-  authorize.login_form()
-elif auth == "2":
-  authorize.register_form()
-while auth != "1" and auth != "2":
-  auth = input("Введите цифру " + yellow + "1 " + reset + "для авторизации, или цифру" + green + " 2 " + reset + "для регистрации: ")
-  if auth == "1":
-    authorize.login_form()
-  elif auth == "2":
-    authorize.register_form()
+authorize.auth_or_reg()
   
 while question_num < len(question_list):
   print(yellow + 'Вопрос №' + str(question_num) + ':' + reset + question_list[question_num])
