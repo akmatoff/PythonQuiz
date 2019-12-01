@@ -20,6 +20,9 @@ def login_form():
   with open('users.csv', newline='') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=",")
 
+    while login == '' and password == '':
+      login_form()
+
     for row in csv_reader:
       username = row[0]
       usernames.append(username)
