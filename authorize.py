@@ -29,6 +29,7 @@ def auth_or_reg():
 def login_form():
   print("- Авторизация - ".center(70))
 
+  global login
   login = input("Введите логин: ")
 
   with open('users.csv', newline='') as csv_file:
